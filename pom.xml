@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.tmobile.ct.example</groupId>
+	<artifactId>test_framework_skeleton</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<dependencies>
+		<dependency>
+			<groupId>com.tmobile.ct.common</groupId>
+			<artifactId>core_framework</artifactId>
+			<version>2.0.13-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-collections4</artifactId>
+    <version>4.4</version>
+</dependency>
+		
+   <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>poi</artifactId>
+             <version>3.9</version>
+      </dependency>
+      <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>poi-ooxml</artifactId>
+             <version>3.9</version>
+      </dependency>
+      <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>poi-ooxml-schemas</artifactId>
+             <version>3.9</version>
+      </dependency>
+      <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>poi-scratchpad</artifactId>
+             <version>3.9</version>
+      </dependency>
+      <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>ooxml-schemas</artifactId>
+             <version>1.1</version>
+      </dependency>
+      <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>openxml4j</artifactId>
+             <version>1.0-beta</version>
+      </dependency>		
+		
+<!--	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.1.3</version>
+</dependency>
+		  -->	
+		
+		
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.20</version>
+					<configuration>
+						<!-- <skipTests>${skip.web}</skipTests> -->
+						<suiteXmlFiles>
+                            <suiteXmlFile>E2ETestingSoxMicroapp.xml</suiteXmlFile>
+						</suiteXmlFiles>
+						<systemPropertyVariables>
+							<!-- <javax.net.ssl.trustStore>${project.basedir}/src/test/resources/security/cacerts.jks</javax.net.ssl.trustStore>
+							<javax.net.ssl.trustStorePassword>changeit</javax.net.ssl.trustStorePassword> -->
+							<path.prefix>${project.build.directory}/test-classes</path.prefix>
+							<webdriver.runlocal>false</webdriver.runlocal>
+							<testenv>qlab03</testenv>
+							<retryCount>0</retryCount>
+                            <retryInterval>1000</retryInterval>
+						</systemPropertyVariables>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<!-- put your configurations here -->
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<descriptors>
+							<descriptor>${basedir}/assembly.xml</descriptor>
+						</descriptors>
+					</configuration>
+					<executions>
+						<execution>
+							<id>make-assembly</id>
+							<phase>package</phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
